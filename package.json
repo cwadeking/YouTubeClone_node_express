@@ -1,0 +1,25 @@
+{
+  "name": "youtube_clone",
+  "version": "1.0.0",
+  "description": "application_memicking_youtube",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cwadeking/YouTubeClone_node_express.git"
+  },
+  "author": "christine_beans_king",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cwadeking/YouTubeClone_node_express/issues"
+  },
+  "homepage": "https://github.com/cwadeking/YouTubeClone_node_express#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}

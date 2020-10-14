@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://cwadeking:HollaAtYaBoy@youtubeclone.lik3h.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken"
+  }

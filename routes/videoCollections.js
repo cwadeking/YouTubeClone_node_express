@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
 const Video = require('../models/Video');
+const { Comment } = require('../models/Comment');
 
 router.get('/', async (req, res) => {
     try{
@@ -30,13 +31,21 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const { error } = validateVideo(req.body);
     if (error) {
+        console.log(error);
         return res.status(400).send(error);
     }
+
+    const comment = new Comment({
+        text: req.body.comment,
+        replies: []
+    });
+
     let videos = new Video({
+        videoId: req.body.videoId,
         videoTitle: req.body.videoTitle,
         likes: req.body.likes,
         dislikes: req.body.dislikes,
-        comments: [],
+        comments:[comment],
     });
     try{
         const result = await videos.save();
@@ -72,7 +81,13 @@ router.put('/:id', async (req, res) => {
 
 function validateVideo(video) {
     const schema = Joi.object({
-      videoTitle: Joi.string().min(1).required(),
+      videoId: Joi.string().min(1).required(),
+      videoTitle: Joi.string(),
+      likes: Joi.number(),
+      dislikes: Joi.number(),
+      comment: Joi.string(),
     });
     return schema.validate(video);
   }
+
+  module.exports = router;

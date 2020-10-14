@@ -60,12 +60,19 @@ router.put('/:id', async (req, res) => {
     if(error){
         return res.status(400).send(error);
     }
+    const comment = new Comment({
+        text: req.body.comment,
+        replies: []
+    });
     try{
         const videos = await Video.findByIdAndUpdate(
             req.params.id,
             {
+                videoId: req.body.videoId,
                 videoTitle: req.body.videoTitle,
-                likes: re
+                likes: req.body.likes,
+                dislikes: req.body.dislikes,
+                comments:[comment],
             },
             {new: true }
     );
